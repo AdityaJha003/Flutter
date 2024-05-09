@@ -60,114 +60,105 @@ class _CalculatorPageState extends State<CalculatorPage> {
     }
   }
 
+  void _clear() {
+    setState(() {
+      _num1 = null;
+      _num2 = null;
+      _result = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculator'),
-        backgroundColor: Color.fromARGB(255, 239, 238, 238),
+        title: Text(
+          'Simple Calculator',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.green, // Change the color to green
       ),
-      body: Container(
-        color: Color.fromARGB(255, 215, 217, 217),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MovieBox(
-                image:
-                    'https://images.pexels.com/photos/1329295/pexels-photo-1329295.jpeg?auto=compress&cs=tinysrgb&w=600',
-              ),
-              const Text(
-                'Input the Operands and Operator',
-                style: TextStyle(
-                  fontSize: 19,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+      body: Column(
+        children: [
+          Row(
+            children: <Widget>[
+              Padding(padding: EdgeInsets.all(10)),
+              Expanded(
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(labelText: 'Num 1'),
+                  onChanged: (value) {
+                    setState(() {
+                      _num1 = value;
+                    });
+                  },
                 ),
               ),
-              const SizedBox(
-                height: 5,
+              Padding(padding: EdgeInsets.all(10)),
+              Expanded(
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(labelText: '+ - x /'),
+                  onChanged: (value) {
+                    setState(() {
+                      _operation = value;
+                    });
+                  },
+                ),
               ),
-              TextFormField(
-                onChanged: (value) {
-                  setState(() {
-                    _num1 = value;
-                  });
-                },
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Number 1'),
+              Padding(padding: EdgeInsets.all(10)),
+              Expanded(
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(labelText: 'Num 2'),
+                  onChanged: (value) {
+                    setState(() {
+                      _num2 = value;
+                    });
+                  },
+                ),
               ),
-              SizedBox(height: 16.0),
-              TextFormField(
-                onChanged: (value) {
-                  setState(() {
-                    _num2 = value;
-                  });
-                },
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Number 2'),
+              Padding(padding: EdgeInsets.all(10)),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.green),
+                  child: Text('Calculate'),
+                  onPressed: _calculate,
+                ),
               ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _buildOperationButton('+'),
-                  _buildOperationButton('-'),
-                  _buildOperationButton('*'),
-                  _buildOperationButton('/'),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: _calculate,
-                child: Text('Calculate For Result :)'),
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                'Result: $_result',
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Color.fromARGB(255, 234, 142, 123),
-                    fontWeight: FontWeight.bold),
+              SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.green),
+                  child: Text('Clear'),
+                  onPressed: _clear,
+                ),
               ),
             ],
           ),
-        ),
+          SizedBox(height: 20),
+          Text(
+            'Result: $_result',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
-    );
-  }
-
-  Widget _buildOperationButton(String operation) {
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          _operation = operation;
-        });
-      },
-      child: Text(operation),
-    );
-  }
-}
-
-class MovieBox extends StatelessWidget {
-  final String image;
-
-  const MovieBox({Key? key, required this.image}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.network(
-          image,
-          height: 200,
-          width: 200,
-          fit: BoxFit.contain,
-        ),
-        SizedBox(height: 16.0),
-      ],
     );
   }
 }
