@@ -1,16 +1,7 @@
 # flutter_application_1
 
-A new Flutter project.
+A new Flutter project of movie catalog application.
+The movie catalog boxes can open and redirect you to description page of the movie.
+You can also like the movie and add in liked movies.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![movie catalog app](https://github.com/user-attachments/assets/d92fce5a-38be-4fef-8d69-30acf04ced06)
