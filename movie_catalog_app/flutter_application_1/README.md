@@ -1,4 +1,4 @@
-# flutter_application_1
+# Movie Catalogue Mobile Application
 
 A new Flutter project of movie catalog application.
 The movie catalog boxes can open and redirect you to description page of the movie.
